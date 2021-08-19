@@ -50,6 +50,6 @@ function startBot(server, channel) {
 		setTimeout(() => {
 			console.log("Attempting to connect.")
 			startBot(server, channel)
-		}, 2000)
+		}, 10000)
 	})
 }
