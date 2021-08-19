@@ -16,6 +16,7 @@ export default class command {
 	async run(message, args) {
 		if(args.length != 1) {
 			this.client.sendMessage("!! Missing argument.")
+			return
 		}
 
 		const bans = await DB.get("bans")
