@@ -14,7 +14,7 @@ export default class command {
 
 	async run() {
 		const bans = await DB.get("bans")
-
-		this.client.sendMessage("!! There are " + bans.length + " bans. Here's one: " + bans[Math.floor(Math.random() * bans.length)])
+		
+		this.client.sendMessage(`There are \`${bans.length}\` bans.${bans.length != 0 ? ` Here's one: ${bans[Math.floor(Math.random() * bans.length)]}` : ""}`)
 	}
 }
