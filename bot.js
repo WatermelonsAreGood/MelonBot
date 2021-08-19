@@ -1,5 +1,6 @@
 import ClientManager from "./managers/ClientManager.js"
 import CommandManager from "./managers/CommandManager.js"
+
 import fs from "fs"
 
 const config = JSON.parse(fs.readFileSync("config.json"))
@@ -35,6 +36,7 @@ function startBot(server, channel) {
 	
 		client.midi.stop()
 		delete client.users
+		
 		setTimeout(() => {
 			console.log("Attempting to connect.")
 			startBot(server, channel)
