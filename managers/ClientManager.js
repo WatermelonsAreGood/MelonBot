@@ -55,18 +55,18 @@ export default class ClientManager extends EventEmitter {
 				return
 			}
 
-			const type = packet.m
-			
-
-			if(type == "hi") {
+			switch(packet.m) {
+			case "hi":
 				this.user = packet.u
 				this.emit("ready")
-			} else if(type == "a") {
+				break
+			case "a":
 				this.emit("message", {
 					content: packet.a,
 					user: packet.p
 				})
-			} else if(type == "ch") {
+				break
+			case "ch":
 				this.users = new Map()
 				
 				packet.ppl.forEach(u => {
@@ -76,16 +76,21 @@ export default class ClientManager extends EventEmitter {
 						this.user = u
 					}
 				})
+
 				if(packet.ch.crown) {
 					this.crown = packet.ch.crown.userId == this.user._id
 				} else {
 					this.crown = false
 				}
-			} else if(type == "p") {
+				break
+			case "p":
 				this.users.set(packet._id, packet)
-			} else if(type == "bye") {
+				break
+			case "bye":
 				this.users.delete(packet.ps)
+				break
 			}
+
 		})
 
 		this.ws.on("close", (code, reason) => {
