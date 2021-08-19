@@ -19,10 +19,11 @@ export default class ClientManager extends EventEmitter {
 		this.url = url
 		this.token = token
 		this.crown = false
+		this.following = ""
 		this.users = new Map()
 		this.midi = new MidiManager(this)
 		this.dvd = new DVDManager({})
-		
+
 		this.ws = new WebSocket(this.url, {
 			headers: {
 				"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36",
@@ -49,7 +50,7 @@ export default class ClientManager extends EventEmitter {
 			})
 
 			this.dvd.on("update", () => {
-				if(!this.midi.player.isPlaying()) {
+				if(!this.midi.player.isPlaying() && !this.following) {
 					this.sendPacket("m", {x: this.dvd.pos.x, y: this.dvd.pos.y})
 				}
 			})
@@ -116,6 +117,13 @@ export default class ClientManager extends EventEmitter {
 			}
 			case "bye":
 				this.users.delete(packet.ps)
+				break
+			case "m":
+				if(this.following == packet.id) {
+					this.sendPacket("m", {
+						...packet 
+					})
+				}
 				break
 			}
 

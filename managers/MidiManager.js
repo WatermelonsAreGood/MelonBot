@@ -60,6 +60,7 @@ export default class MidiManager extends EventEmitter {
 		Player.on("fileLoaded", () => {
 			this.emit("start", getLastItem(this.currentlyPlaying))
 			this.cursorInterval = setInterval(() => {
+				if(client.following) client.following = ""
 				client.sendPacket("m", { x: 100 - (((Player.totalTicks - Player.getCurrentTick()) / Player.division / Player.tempo * 60) / Player.getSongTime() * 100), y: 15.07 })
 			}, 500)
 		})
