@@ -28,7 +28,7 @@ export default class command {
 			await DB.set("bans", bans)
 
 			if(this.client.crown && this.client.users.has(args[0])) {
-				this.sendPacket("kickban", {
+				this.client.sendPacket("kickban", {
 					_id: args[0],
 					ms: 3600000,
 				})
