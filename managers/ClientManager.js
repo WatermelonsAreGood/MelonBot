@@ -1,8 +1,15 @@
 import { EventEmitter } from "events"
 import WebSocket from "ws"
+import Josh from "@joshdb/core"
+import provider from "@joshdb/sqlite"
 
 import MidiManager from "./MidiManager.js"
 import DVDManager from "./DVDManager.js"
+
+const DB = new Josh({
+	name: "MelonBot",
+	provider,
+})
 
 export default class ClientManager extends EventEmitter {
 
@@ -47,7 +54,7 @@ export default class ClientManager extends EventEmitter {
 			})
 		})
 
-		this.ws.on("message", message => {
+		this.ws.on("message", async message => {
 			let packet
 			try {
 				packet = JSON.parse(message.toString())[0]
@@ -66,26 +73,46 @@ export default class ClientManager extends EventEmitter {
 					user: packet.p
 				})
 				break
-			case "ch":
+			case "ch": {
 				this.users = new Map()
+				const bans = await DB.get("bans")
 				
-				packet.ppl.forEach(u => {
-					this.users.set(u._id, u)
-
-					if(u._id == this.user._id) {
-						this.user = u
-					}
-				})
-
 				if(packet.ch.crown) {
 					this.crown = packet.ch.crown.userId == this.user._id
 				} else {
 					this.crown = false
 				}
+				
+				packet.ppl.forEach(u => {
+					this.users.set(u._id, u)
+					
+					if(this.crown && bans.includes(u._id)) {
+						this.sendPacket("kickban", {
+							_id: u._id,
+							ms: 3600000,
+						})
+					}
+
+					if(u._id == this.user._id) {
+						this.user = u
+					}
+				})
+				
 				break
-			case "p":
+			}
+			case "p": {
+
 				this.users.set(packet._id, packet)
+				const bans = await DB.get("bans")
+				
+				if(this.crown && bans.includes(packet._id)) {
+					this.sendPacket("kickban", {
+						_id: packet._id,
+						ms: 3600000,
+					})
+				}
 				break
+			}
 			case "bye":
 				this.users.delete(packet.ps)
 				break
