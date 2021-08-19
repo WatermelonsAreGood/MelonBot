@@ -4,3 +4,4 @@ node_modules/
 !config.example.json
 !.eslintrc.json
 !package.json
+data/
