@@ -26,6 +26,13 @@ export default class command {
 		} else {
 			bans.push(args[0])
 			await DB.set("bans", bans)
+
+			if(this.client.crown && this.client.users.has(args[0])) {
+				this.sendPacket("kickban", {
+					_id: args[0],
+					ms: 3600000,
+				})
+			}
 			this.client.sendMessage("!! User " + args[0] + " now banned. There are " + bans.length + " bans now.")
 		}
 	}
