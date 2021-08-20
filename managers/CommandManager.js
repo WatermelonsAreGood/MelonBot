@@ -8,6 +8,11 @@ const USERS = new Josh({
 	provider,
 })
 
+const DB = new Josh({
+	name: "MelonBot",
+	provider,
+})
+
 export default class ClientManager {
 	constructor(client) {
 		this.client = client
@@ -17,6 +22,8 @@ export default class ClientManager {
 
 
 	async handleMessage(message) {
+		const bans = await DB.get("bans")
+
 		const args = message.content.split(" ")
 		let command = args.shift()
 		
@@ -26,14 +33,21 @@ export default class ClientManager {
 			const nodeCommand = await import(`./commands/${command}.js`)
 			const classCommand = new nodeCommand.default(this.client)
 			
+			if(bans.includes(message.user._id)) {
+				this.client.sendMessage("!! You are banned.")
+				return
+			}
+
 			if(classCommand.admin && !this.config.admins.includes(message.user._id)) {
 				this.client.sendMessage("!! You are not a admin.")
 				return
 			}
+
 			await USERS.ensure(message.user._id, {
 				money: 0,
 				inventory: []
 			})
+			
 			classCommand.run(message, args)
 		}
 	}
