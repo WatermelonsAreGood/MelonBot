@@ -2,11 +2,13 @@
 	{
 		"id": "water_melon",
 		"name": "Watermelon",
+		"cost": 10,
 		"chance": 0
 	},
 	{
 		"id": "grape_fruit",
 		"name": "Grapefruit",
-		"chance": 5
+		"chance": 5,
+		"cost": 100
 	}
 ]
