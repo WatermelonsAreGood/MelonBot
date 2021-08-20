@@ -34,52 +34,62 @@
 		"name": "Tangerine",
 		"chance": 5,
 		"cost": 40
-	},	{
+	},
+	{
 		"id": "hackberry",
 		"name": "Hackberry",
 		"chance": 6,
 		"cost": 45
-	},	{
+	},
+	{
 		"id": "jabotacaba",
 		"name": "Jabotacaba",
 		"chance": 7,
 		"cost": 50
-	},	{
+	},
+	{
 		"id": "youngberry",
 		"name": "Youngberry",
 		"chance": 8,
 		"cost": 55
-	},	{
+	},
+	{
 		"id": "tomato",
 		"name": "Tomato",
 		"chance": 9,
 		"cost": 60
-	},	{
+	},
+	{
 		"id": "pomegranate",
 		"name": "Pomegranate",
 		"chance": 10,
 		"cost": 65
-	},	{
+	},
+	{
 		"id": "marionberry",
 		"name": "Marionberry",
 		"chance": 11,
 		"cost": 70
-	},	{
+	},
+	{
 		"id": "lablab",
 		"name": "Lablab",
 		"chance": 12,
 		"cost": 85
-	},	{
+	},
+	{
 		"id": "strawberry",
 		"name": "Strawberry",
 		"chance": 13,
 		"cost": 90
-	},	{
+	},
+	{
 		"id": "mock_strawberry",
 		"name": "Mock Strawberry",
 		"chance": 14,
 		"cost": 95
-	},	{
+	},
+	{
 		"id": "yuzu",
 		"name": "Yuzu",
 		"chance": 20,
