@@ -16,5 +16,24 @@ export default class command {
 	}
 
 	async run(message, args) {
+		const me = await USERS.get(message.user._id)
+		const itemObject = items.find(e => e.name == args[0])
+		
+		if(!itemObject) {
+			this.client.sendMessage("!! Item doesn't exist.")
+		} else {
+			const item = me.inventory.find(e => e.id == itemObject.id)
+
+			if(item) {
+				this.client.sendMessage(`!! Sold ${item.amount} ${itemObject.name} for ${itemObject.cost * item.amount}`)
+				
+				me.money += itemObject.cost * item.amount
+				me.inventory = me.inventory.filter(e => e.id != itemObject.id)
+
+				await USERS.set(message.user._id, me)
+			} else {
+				this.client.sendMessage("!! You don't have this item.")
+			}
+		}
 	}
 }
