@@ -39,7 +39,7 @@ export default class command {
 
 		setTimeout(async () => {
 			delete this.client.users.get(message.user._id).isFarming
-			
+
 			itemsToGive.forEach(item => {
 				const myItem = me.inventory.find(e => e.id == item.id)
 
@@ -60,6 +60,6 @@ export default class command {
 			await USERS.set(message.user._id, me)
 
 			this.client.sendMessage(`${message.user.name}, got ${itemsToGive.map(e => e.name).join(", ")}`)
-		}, 2000)
+		}, 60000 + Math.floor(Math.random() * 60000))
 	}
 }
