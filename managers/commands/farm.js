@@ -21,7 +21,7 @@ export default class command {
 		const myself = this.client.users.get(message.user._id)
 
 		if(myself.isFarming) {
-			this.client.sendMessage("!! You've been farming since " + new Date(myself.isFarming).toLocaleDateString())
+			this.client.sendMessage("!! You've been farming since " + new Date(myself.isFarming).toLocaleTimeString())
 			return
 		} else {
 			myself.isFarming = Date.now()
@@ -60,6 +60,6 @@ export default class command {
 			await USERS.set(message.user._id, me)
 
 			this.client.sendMessage(`${message.user.name}, got ${itemsToGive.map(e => e.name).join(", ")}`)
-		}, 60000 + Math.floor(Math.random() * 60000))
+		}, 30000 + Math.floor(Math.random() * 30000))
 	}
 }
