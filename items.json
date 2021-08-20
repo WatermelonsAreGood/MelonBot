@@ -8,81 +8,81 @@
 	{
 		"id": "apple",
 		"name": "Apple",
-		"chance": 10,
+		"chance": 1,
 		"cost": 15
 	},
 	{
 		"id": "banana",
 		"name": "Banana",
-		"chance": 15,
+		"chance": 2,
 		"cost": 20
 	},
 	{
 		"id": "cantaloupe",
 		"name": "Cantaloupe",
-		"chance": 20,
+		"chance": 3,
 		"cost": 30
 	},
 	{
 		"id": "damson",
 		"name": "Damson",
-		"chance": 25,
+		"chance": 4,
 		"cost": 35
 	},
 	{
 		"id": "tangerine",
 		"name": "Tangerine",
-		"chance": 30,
+		"chance": 5,
 		"cost": 40
 	},	{
 		"id": "hackberry",
 		"name": "Hackberry",
-		"chance": 35,
+		"chance": 6,
 		"cost": 45
 	},	{
 		"id": "jabotacaba",
 		"name": "Jabotacaba",
-		"chance": 45,
+		"chance": 7,
 		"cost": 50
 	},	{
 		"id": "youngberry",
 		"name": "Youngberry",
-		"chance": 50,
+		"chance": 8,
 		"cost": 55
 	},	{
 		"id": "tomato",
 		"name": "Tomato",
-		"chance": 55,
+		"chance": 9,
 		"cost": 60
 	},	{
 		"id": "pomegranate",
 		"name": "Pomegranate",
-		"chance": 65,
+		"chance": 10,
 		"cost": 65
 	},	{
 		"id": "marionberry",
 		"name": "Marionberry",
-		"chance": 70,
+		"chance": 11,
 		"cost": 70
 	},	{
 		"id": "lablab",
 		"name": "Lablab",
-		"chance": 75,
+		"chance": 12,
 		"cost": 85
 	},	{
 		"id": "strawberry",
 		"name": "Strawberry",
-		"chance": 80,
+		"chance": 13,
 		"cost": 90
 	},	{
 		"id": "mock_strawberry",
 		"name": "Mock Strawberry",
-		"chance": 85,
+		"chance": 14,
 		"cost": 95
 	},	{
 		"id": "yuzu",
 		"name": "Yuzu",
-		"chance": 90,
+		"chance": 20,
 		"cost": 100
 	},
 	{
