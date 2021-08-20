@@ -1,7 +1,3 @@
 config.json
 node_modules/
-*.json
-!config.example.json
-!.eslintrc.json
-!package.json
 data/

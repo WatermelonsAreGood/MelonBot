@@ -1,6 +1,12 @@
-
+import Josh from "@joshdb/core"
+import provider from "@joshdb/sqlite"
 
 import fs from "fs"
+
+const USERS = new Josh({
+	name: "MelonBot-Users",
+	provider,
+})
 
 export default class ClientManager {
 	constructor(client) {
@@ -24,7 +30,10 @@ export default class ClientManager {
 				this.client.sendMessage("!! You are not a admin.")
 				return
 			}
-
+			await USERS.ensure(message.user._id, {
+				money: 0,
+				inventory: []
+			})
 			classCommand.run(message, args)
 		}
 	}

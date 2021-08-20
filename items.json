@@ -1,0 +1,12 @@
+[
+	{
+		"id": "water_melon",
+		"name": "Watermelon",
+		"chance": 0
+	},
+	{
+		"id": "grape_fruit",
+		"name": "Grapefruit",
+		"chance": 5
+	}
+]
