@@ -17,7 +17,7 @@ export default class command {
 
 	async run(message, args) {
 		const me = await USERS.get(message.user._id)
-		const itemObject = items.find(e => e.name == args[0])
+		const itemObject = items.find(e => e.name == args.join(" "))
 		
 		if(!itemObject) {
 			this.client.sendMessage("!! Item doesn't exist.")
