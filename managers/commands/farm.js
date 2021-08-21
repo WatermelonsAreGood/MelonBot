@@ -21,14 +21,14 @@ export default class command {
 		const myself = this.client.users.get(message.user._id)
 
 		if(myself.isFarming) {
-			this.client.sendMessage("!! You've been farming since " + new Date(myself.isFarming).toLocaleTimeString())
+			this.client.sendMessage("You've been farming since " + new Date(myself.isFarming).toLocaleTimeString())
 			return
 		} else {
 			myself.isFarming = Date.now()
 			this.client.users.set(message.user._id, myself)
 		}
 
-		this.client.sendMessage("!! Started farming!")
+		this.client.sendMessage("Started farming!")
 		const itemsToGive = []
 
 		items.forEach(item => {

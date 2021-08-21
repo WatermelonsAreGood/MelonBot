@@ -13,6 +13,6 @@ export default class command {
 
 	async run(message) {
 		const me = await USERS.get(message.user._id)
-		this.client.sendMessage(`!! You have ${me.money}$!`)
+		this.client.sendMessage(`You have ${me.money}$!`)
 	}
 }

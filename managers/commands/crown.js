@@ -11,9 +11,9 @@ export default class command {
 				"id": message.user.id
 			})
 
-			this.client.sendMessage("!! Crown given.")
+			this.client.sendMessage("Crown given.")
 		} else {
-			this.client.sendMessage("!! I don't have the crown.")
+			this.client.sendMessage("I don't have the crown.")
 		}
 	}
 }

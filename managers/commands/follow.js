@@ -10,10 +10,10 @@ export default class command {
 		} else {
 			if(this.client.users.has(args[0])) {
 				const user = this.client.users.get(args[0])
-				this.client.sendMessage(`!! Now following ${user.name}!`)
+				this.client.sendMessage(`Now following ${user.name}!`)
 				this.client.following = user.id
 			} else {
-				this.client.sendMessage("!! Couldn't find user!")
+				this.client.sendMessage("Couldn't find user!")
 			}
 		}
 

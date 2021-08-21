@@ -22,7 +22,7 @@ export default class command {
 		const bans = await DB.get("bans")
 
 		if(bans.includes(args[0])) {
-			this.client.sendMessage("!! User " + args[0] + " is already banned.")
+			this.client.sendMessage("User " + args[0] + " is already banned.")
 		} else {
 			bans.push(args[0])
 			await DB.set("bans", bans)
@@ -33,7 +33,7 @@ export default class command {
 					ms: 3600000,
 				})
 			}
-			this.client.sendMessage("!! User " + args[0] + " now banned. There are " + bans.length + " bans now.")
+			this.client.sendMessage("User " + args[0] + " now banned. There are " + bans.length + " bans now.")
 		}
 	}
 }

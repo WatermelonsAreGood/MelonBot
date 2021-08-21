@@ -31,11 +31,11 @@ export default class ClientManager extends EventEmitter {
 		})
 		
 		this.midi.on("end", song => {
-			this.sendMessage(`!! ${song} ended.`)
+			this.sendMessage(`${song} ended.`)
 		})
 		
 		this.midi.on("start", song => {
-			this.sendMessage(`!! ${song} started.`)
+			this.sendMessage(`${song} started.`)
 		})
 
 		this.ws.on("open", () => {

@@ -20,19 +20,19 @@ export default class command {
 		const itemObject = items.find(e => e.name == args.join(" "))
 		
 		if(!itemObject) {
-			this.client.sendMessage("!! Fruit doesn't exist.")
+			this.client.sendMessage("Fruit doesn't exist.")
 		} else {
 			const item = me.inventory.find(e => e.id == itemObject.id)
 
 			if(item) {
-				this.client.sendMessage(`!! Sold ${item.amount} ${itemObject.name} for ${itemObject.cost * item.amount}`)
+				this.client.sendMessage(`Sold ${item.amount} ${itemObject.name} for ${itemObject.cost * item.amount}`)
 				
 				me.money += itemObject.cost * item.amount
 				me.inventory = me.inventory.filter(e => e.id != itemObject.id)
 
 				await USERS.set(message.user._id, me)
 			} else {
-				this.client.sendMessage("!! You don't have this fruit.")
+				this.client.sendMessage("You don't have this fruit.")
 			}
 		}
 	}

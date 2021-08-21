@@ -34,12 +34,12 @@ export default class ClientManager {
 			const classCommand = new nodeCommand.default(this.client)
 			
 			if(bans.includes(message.user._id)) {
-				this.client.sendMessage("!! You are banned.")
+				this.client.sendMessage("You are banned.")
 				return
 			}
 
 			if(classCommand.admin && !this.config.admins.includes(message.user._id)) {
-				this.client.sendMessage("!! You are not a admin.")
+				this.client.sendMessage("You are not a admin.")
 				return
 			}
 

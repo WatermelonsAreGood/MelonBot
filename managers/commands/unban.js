@@ -15,18 +15,18 @@ export default class command {
 
 	async run(message, args) {
 		if(args.length != 1) {
-			this.client.sendMessage("!! Missing argument.")
+			this.client.sendMessage("Missing argument.")
 			return
 		}
 
 		let bans = await DB.get("bans")
 
 		if(!bans.includes(args[0])) {
-			this.client.sendMessage("!! User " + args[0] + " isn't banned.")
+			this.client.sendMessage("User " + args[0] + " isn't banned.")
 		} else {
 			bans = bans.filter(e => e != args[0])
 			await DB.set("bans", bans)
-			this.client.sendMessage("!! User " + args[0] + " has been unbanned. There are " + bans.length + " bans now.")
+			this.client.sendMessage("User " + args[0] + " has been unbanned. There are " + bans.length + " bans now.")
 		}
 	}
 }

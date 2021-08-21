@@ -8,9 +8,9 @@ export default class command {
 		
 		try {
 			const result = eval(args.join(" "))
-			this.client.sendMessage(`!! ✔️ ${result}`)
+			this.client.sendMessage(`✔️ ${result}`)
 		} catch(error) {
-			this.client.sendMessage(`!! ❌ ${error.toString().split("\n")[0]}`)
+			this.client.sendMessage(`❌ ${error.toString().split("\n")[0]}`)
 		}
 
 	}

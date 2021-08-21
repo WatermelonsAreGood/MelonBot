@@ -5,6 +5,6 @@ export default class command {
 
 	run() {
 		this.client.midi.currentlyRepeating = !this.client.midi.currentlyRepeating
-		this.client.sendMessage("!! "+ (this.client.midi.currentlyRepeating ? "Turned on `repeating` mode. " : "Turned off repeating mode."))
+		this.client.sendMessage((this.client.midi.currentlyRepeating ? "Turned on `repeating` mode. " : "Turned off repeating mode."))
 	}
 }

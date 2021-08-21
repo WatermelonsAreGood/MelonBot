@@ -4,7 +4,7 @@ export default class command {
 	}
 
 	run() {
-		this.client.sendMessage("!! Stopped following!")
+		this.client.sendMessage("Stopped following!")
 		this.client.following = ""
 	}
 }

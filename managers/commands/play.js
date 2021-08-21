@@ -7,7 +7,7 @@ export default class command {
 		if(this.client.midi.midis.includes(args[0])) {
 			this.client.midi.play(`./managers/midis/${args[0]}.mid`)
 		} else {
-			this.client.sendMessage("!! Could not find MIDI.")
+			this.client.sendMessage("Could not find MIDI.")
 		}
 	}
 }

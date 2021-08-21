@@ -19,7 +19,7 @@ export default class command {
 		const me = await USERS.get(message.user._id)
 		
 		if(me.inventory.length == 0) {
-			this.client.sendMessage("!! You don't have any fruit.")
+			this.client.sendMessage("You don't have any fruit.")
 			return
 		}
 
@@ -35,6 +35,6 @@ export default class command {
 
 		await USERS.set(message.user._id, me)
 
-		this.client.sendMessage("!! You sold all of your fruit. You got " + value + "$!")
+		this.client.sendMessage("You sold all of your fruit. You got " + value + "$!")
 	}
 }

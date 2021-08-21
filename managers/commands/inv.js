@@ -18,7 +18,7 @@ export default class command {
 	async run(message) {
 		const me = await USERS.get(message.user._id)
 		if(me.inventory.length != 0) {
-			const text = `!! ${message.user.name} has ${me.inventory.map(e => `${items.find(b => b.id == e.id).name} (x${e.amount})`).join(", ")}`.match(/.{1,511}/g)
+			const text = `${message.user.name} has ${me.inventory.map(e => `${items.find(b => b.id == e.id).name} (x${e.amount})`).join(", ")}`.match(/.{1,511}/g)
 
 			setTimeout(() => {
 				for (let i = 0; i < text.length; i++) {
@@ -28,7 +28,7 @@ export default class command {
 				}
 			}, 100)
 		} else {
-			this.client.sendMessage("!! Your inventory is empty. To populate it with fruit, use ??farm.")
+			this.client.sendMessage("Your inventory is empty. To populate it with fruit, use ??farm.")
 		}
 	}
 }
