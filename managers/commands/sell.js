@@ -20,7 +20,7 @@ export default class command {
 		const itemObject = items.find(e => e.name == args.join(" "))
 		
 		if(!itemObject) {
-			this.client.sendMessage("!! Item doesn't exist.")
+			this.client.sendMessage("!! Fruit doesn't exist.")
 		} else {
 			const item = me.inventory.find(e => e.id == itemObject.id)
 
@@ -32,7 +32,7 @@ export default class command {
 
 				await USERS.set(message.user._id, me)
 			} else {
-				this.client.sendMessage("!! You don't have this item.")
+				this.client.sendMessage("!! You don't have this fruit.")
 			}
 		}
 	}

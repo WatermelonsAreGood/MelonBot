@@ -28,7 +28,7 @@ export default class command {
 				}
 			}, 100)
 		} else {
-			this.client.sendMessage("!! Your inventory is empty. To populate it, use ??farm.")
+			this.client.sendMessage("!! Your inventory is empty. To populate it with fruit, use ??farm.")
 		}
 	}
 }
