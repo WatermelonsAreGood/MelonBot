@@ -133,8 +133,8 @@ export default class ClientManager extends EventEmitter {
 			this.emit("end", `${code} - ${reason}`)
 		})
 
-		this.ws.on("error", () => {
-			this.emit("end", "Experienced error.")
+		this.ws.on("error", e => {
+			console.log(e)
 		})
 	}
 
