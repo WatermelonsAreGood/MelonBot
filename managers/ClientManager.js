@@ -118,11 +118,15 @@ export default class ClientManager extends EventEmitter {
 				}
 				break
 			}
-			case "bye":
-				this.emit("leave", this.users.get(packet.p))
+			case "bye": {
+				const usr = this.users.get(packet.p);
+				
+				if(usr)
+					this.emit("leave", usr)
 
 				this.users.delete(packet.p)
 				break
+			}
 			case "m":
 				if(this.following == packet.id) {
 					this.sendPacket("m", {
