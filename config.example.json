@@ -7,12 +7,17 @@
 	"username": "MelonBot",
 	"links": [
 		{
-			"ws": "wss://mppclone.com:8443/", 
+			"ws": "wss://mppclone.com:8443/",
+			"name": "MPPclone", 
 			"channels": ["MelonBot", "MelonTesting"]
 		},
 		{
 			"ws": "wss://mpp.yourfriend.lv/ws", 
+			"name": "Yourfriend's MPP",
 			"channels": ["MelonBot", "lobby"]
 		}
-	]
+	],
+	"discord": {
+		"category": "Bridges"
+	}
 }
