@@ -45,9 +45,9 @@ export default class DiscordManager extends EventEmitter {
 			this.clients.set(data.toLowerCase().replaceAll(" ", "-").replaceAll("'", "").replaceAll("/","") , clientt)
 		})
 
-		setInterval(async () => {
+		setInterval(() => {
 			if(this.buffer.length == 0) return
-			this.buffer.forEach(s => {
+			this.buffer.forEach(async s => {
 				let findCategory = this.guild.channels.cache.find(e => e.name == s.server.name && e.type == "GUILD_CATEGORY")
         
 				if(!findCategory) {
