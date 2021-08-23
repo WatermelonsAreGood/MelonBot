@@ -23,7 +23,7 @@ export default class DiscordManager extends EventEmitter {
 						return
 					}
 
-					findClient.sendMessage(`[discord.gg/vVSsG3yvgE] ${message.author.username}#${message.author.discriminator}: ${message.content}`)
+					findClient.sendMessage(`[discord.gg/DgAHFKBw44] ${message.author.username}#${message.author.discriminator}: ${message.content}`)
 				}
 			}	
 		})

@@ -119,8 +119,8 @@ export default class ClientManager extends EventEmitter {
 				break
 			}
 			case "bye": {
-				const usr = this.users.get(packet.p);
-				
+				const usr = this.users.get(packet.p)
+
 				if(usr)
 					this.emit("leave", usr)
 
