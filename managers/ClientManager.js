@@ -103,8 +103,8 @@ export default class ClientManager extends EventEmitter {
 				break
 			}
 			case "p": {
-
 				this.users.set(packet._id, packet)
+
 				const bans = await DB.get("bans")
 				
 				if(this.crown && bans.includes(packet._id)) {
@@ -113,7 +113,8 @@ export default class ClientManager extends EventEmitter {
 						ms: 3600000,
 					})
 				} else {
-					this.emit("join", packet)
+					if(!this.users.has(packet._id))
+						this.emit("join", packet)
 				}
 				break
 			}
