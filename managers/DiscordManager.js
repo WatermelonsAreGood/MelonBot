@@ -64,8 +64,8 @@ export default class DiscordManager extends EventEmitter {
 
 				try {
 					await findChannel.send(s.content.join("\n"), { split: true })
-				} catch {
-					console.log("Failed to send a message. This is nothing to worry about usually.")
+				} catch(error) {
+					console.log("Failed to send a message. This is nothing to worry about usually. " + error)
 				}
 			})
 
