@@ -62,7 +62,7 @@ export default class DiscordManager extends EventEmitter {
 					return
 				}
 
-				findChannel.send(s.content)
+				findChannel.send(s.content.join("\n"))
 			})
 
 			this.buffer = []
@@ -103,10 +103,12 @@ export default class DiscordManager extends EventEmitter {
 		const bufferElement  = this.buffer.find(e => e.server == server)
 		
 		if(bufferElement) {
-			bufferElement.content += content + "\n"
+			bufferElement.content.push(content)
+			
+			this.buffer = this.buffer.filter(e => e.server != server)
 			this.buffer.push(bufferElement)
 		} else {
-			this.buffer.push({server, channel, content: content + "\n"})
+			this.buffer.push({server, channel, content: [ content ]})
 		}
 
 	}
