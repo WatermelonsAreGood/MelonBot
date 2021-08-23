@@ -39,10 +39,6 @@ function startBot(server, channel) {
 		client.dvd.startLoop()
 
 		discord.emit("connected", client, channel+server.name)
-
-		setTimeout(() => {
-			discord.sendRaw(server, channel, `\`Connected.\``)
-		}, 4000)
 		
 		console.log("I have connected to " + server.ws + " #" + channel)		
 	})
