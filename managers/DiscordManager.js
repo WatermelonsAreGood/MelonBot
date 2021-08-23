@@ -16,8 +16,8 @@ export default class DiscordManager extends EventEmitter {
 				const findChannels = this.categoryToChannel.get(category)
 
 				if(findChannels) {
-					const findClient = this.clients.get(message.channel.name.toLowerCase().replaceAll(" ", "-").replaceAll("'", "") + category.name)
-					
+					const findClient = this.clients.get(message.channel.name.data.toLowerCase().replaceAll(" ", "-").replaceAll("'", "").replaceAll("/","")  + category.name)
+
 					if(!findClient) {
 						console.log("Couldn't find client. " + message.channel.name+"/"+category.name+" probably broken.")
 						return
@@ -41,7 +41,7 @@ export default class DiscordManager extends EventEmitter {
 		this.categoryToChannel = new Map() /* category, Array<channel> */
 		
 		this.on("connected", (clientt, data) => {
-			this.clients.set(data.toLowerCase().replaceAll(" ", "-").replaceAll("'", ""), clientt)
+			this.clients.set(data.data.toLowerCase().replaceAll(" ", "-").replaceAll("'", "").replaceAll("/","") , clientt)
 		})
 
 		this.client.login(token)
@@ -58,7 +58,7 @@ export default class DiscordManager extends EventEmitter {
 		const populateChannels = []
 
 		server.channels.forEach(async channel => {
-			let findChannel = this.guild.channels.cache.find(e => e.name == channel.toLowerCase().replaceAll(" ", "-").replaceAll("'", "") && e.type == "GUILD_TEXT" && e.parent == findCategory)
+			let findChannel = this.guild.channels.cache.find(e => e.name == channel.data.toLowerCase().replaceAll(" ", "-").replaceAll("'", "").replaceAll("/","")  && e.type == "GUILD_TEXT" && e.parent == findCategory)
 
 			if(!findChannel) {
 				findChannel = await this.guild.channels.create(channel, {"type": "GUILD_TEXT"})
@@ -83,7 +83,7 @@ export default class DiscordManager extends EventEmitter {
 			return
 		}
 
-		let findChannel = this.categoryToChannel.get(findCategory).find(e => e.name == channel.toLowerCase().replaceAll(" ", "-").replaceAll("'", "") && e.type == "GUILD_TEXT")
+		let findChannel = this.categoryToChannel.get(findCategory).find(e => e.name == channel.data.toLowerCase().replaceAll(" ", "-").replaceAll("'", "").replaceAll("/","")  && e.type == "GUILD_TEXT")
 		
 		if(!findChannel) {
 			console.log("Couldn't send message for " + channel + " " + server.ws + ". Couldn't find channel.")
