@@ -39,7 +39,7 @@ function startBot(server, channel) {
 		client.dvd.startLoop()
 
 		discord.emit("connected", client, channel+server.name)
-		
+
 		console.log("I have connected to " + server.ws + " #" + channel)		
 	})
 
@@ -52,11 +52,11 @@ function startBot(server, channel) {
 	})
 
 	client.on("join", user => {
-		discord.sendRaw(server, channel, `\`${user.name} (${user._id})\` joined`)
+		discord.sendRaw(server, channel, `\`${user.name}\` joined`)
 	})
 
 	client.on("leave", user => {
-		discord.sendRaw(server, channel, `\`${user.name} (${user._id})\` left`)
+		discord.sendRaw(server, channel, `\`${user.name}\` left`)
 	})
 
 	client.on("end", (reason) => {
