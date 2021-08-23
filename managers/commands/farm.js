@@ -38,7 +38,8 @@ export default class command {
 		})
 
 		setTimeout(async () => {
-			delete this.client.users.get(message.user._id).isFarming
+			if(this.client.users.has(message.user._id))
+				delete this.client.users.get(message.user._id).isFarming
 
 			itemsToGive.forEach(item => {
 				const myItem = me.inventory.find(e => e.id == item.id)
