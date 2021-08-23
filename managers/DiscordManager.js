@@ -87,6 +87,7 @@ export default class DiscordManager extends EventEmitter {
 		
 		if(!findChannel) {
 			console.log("Couldn't send message for " + channel + " " + server.ws + ". Couldn't find channel.")
+			return
 		}
 
 		findChannel.send(content)
