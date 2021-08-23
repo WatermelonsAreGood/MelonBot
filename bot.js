@@ -44,7 +44,11 @@ function startBot(server, channel) {
 	})
 
 	client.on("message", message => {
-		if(client.user._id == message.user._id) return;
+		
+		if(client.user._id == message.user._id) {
+			if(message.content.startsWith("[discord.gg/vVSsG3yvgE] ")) return;
+		}
+
 		CManager.handleMessage(message)
 
 		discord.recieveMessage(server, channel, message)

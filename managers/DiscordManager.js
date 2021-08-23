@@ -36,6 +36,8 @@ export default class DiscordManager extends EventEmitter {
 			this.emit("ready")
 		})
 
+		this.buffer = [] /* Array<Object<server, channel, content>> */
+
 		this.clients = new Map() /* String, client */
 		this.categoryToChannel = new Map() /* category, Array<channel> */
 		
@@ -43,6 +45,29 @@ export default class DiscordManager extends EventEmitter {
 			this.clients.set(data.toLowerCase().replaceAll(" ", "-").replaceAll("'", "").replaceAll("/","") , clientt)
 		})
 
+		setInterval(() => {
+			if(this.buffer.length == 0) return
+			this.buffer.forEach(s => {
+				let findCategory = this.guild.channels.cache.find(e => e.name == s.server.name && e.type == "GUILD_CATEGORY")
+        
+				if(!findCategory) {
+					console.log("Couldn't send message for " + s.server.ws + ". Couldn't find category.")
+					return
+				}
+		
+				let findChannel = this.categoryToChannel.get(findCategory).find(e => e.name == s.channel.toLowerCase().replaceAll(" ", "-").replaceAll("'", "").replaceAll("/","")  && e.type == "GUILD_TEXT")
+				
+				if(!findChannel) {
+					console.log("Couldn't send message for " + s.channel + " " + s.server.ws + ". Couldn't find channel.")
+					return
+				}
+
+				findChannel.send(s.content)
+			})
+
+			this.buffer = []
+		}, 600)
+		
 		this.client.login(token)
 	}
 
@@ -75,20 +100,14 @@ export default class DiscordManager extends EventEmitter {
 	}
 
 	async sendRaw(server, channel, content) {
-		let findCategory = this.guild.channels.cache.find(e => e.name == server.name && e.type == "GUILD_CATEGORY")
+		const bufferElement  = this.buffer.find(e => e.server == server)
 		
-		if(!findCategory) {
-			console.log("Couldn't send message for " + server.ws + ". Couldn't find category.")
-			return
+		if(bufferElement) {
+			bufferElement.content += content + "\n"
+			this.buffer.push(bufferElement)
+		} else {
+			this.buffer.push({server, channel, content: content + "\n"})
 		}
 
-		let findChannel = this.categoryToChannel.get(findCategory).find(e => e.name == channel.toLowerCase().replaceAll(" ", "-").replaceAll("'", "").replaceAll("/","")  && e.type == "GUILD_TEXT")
-		
-		if(!findChannel) {
-			console.log("Couldn't send message for " + channel + " " + server.ws + ". Couldn't find channel.")
-			return
-		}
-
-		findChannel.send(content)
 	}
 }
