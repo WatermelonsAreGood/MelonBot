@@ -55,6 +55,14 @@ function startBot(server, channel) {
 		return 
 	})
 
+	client.on("join", user => {
+		discord.sendRaw(server, channel, `\`${user.name} (${user._id})\` joined`)
+	})
+
+	client.on("leave", user => {
+		discord.sendRaw(server, channel, `\`${user.name} (${user._id})\` left`)
+	})
+
 	client.on("end", (reason) => {
 		console.log(`Client closed due to \`${reason}\`. Reconnecting in 2s. (${server.ws})`)
 	
