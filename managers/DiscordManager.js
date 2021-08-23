@@ -16,10 +16,10 @@ export default class DiscordManager extends EventEmitter {
 				const findChannels = this.categoryToChannel.get(category)
 
 				if(findChannels) {
-					const findClient = this.clients.get(message.channel.name.toLowerCase().replaceAll(" ", "-").replaceAll("'", "").replaceAll("/","")  + category.name)
-					
+					const findClient = this.clients.get(message.channel.name  + category.name.toLowerCase())
+
 					if(!findClient) {
-						console.log("Couldn't find client. " + message.channel.name+"/"+category.name+" probably broken.")
+						console.log("Couldn't find client. " + message.channel.name + "/"+category.name+" probably broken.")
 						return
 					}
 

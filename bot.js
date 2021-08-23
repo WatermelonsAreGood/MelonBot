@@ -7,7 +7,6 @@ import DiscordManager from "./managers/DiscordManager.js"
 import fs from "fs"
 
 const config = JSON.parse(fs.readFileSync("config.json"))
-const clients = new Map()
 const discord = new DiscordManager(config.discord.token)
 
 const DB = new Josh({
@@ -40,7 +39,10 @@ function startBot(server, channel) {
 		client.dvd.startLoop()
 
 		discord.emit("connected", client, channel+server.name)
-		discord.sendRaw(server, channel, `\`Connected.\``)
+
+		setTimeout(() => {
+			discord.sendRaw(server, channel, `\`Connected.\``)
+		}, 4000)
 		
 		console.log("I have connected to " + server.ws + " #" + channel)		
 	})
