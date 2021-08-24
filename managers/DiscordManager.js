@@ -22,8 +22,25 @@ export default class DiscordManager extends EventEmitter {
 						console.log("Couldn't find client. " + message.channel.name + "/"+category.name+" probably broken.")
 						return
 					}
+					const args = message.content.split(" ")
+					const command = args.shift()
 
-					findClient.sendMessage(`[discord.gg/DgAHFKBw44] ${message.author.username}#${message.author.discriminator}: ${message.content}`)
+					switch(command) {
+					case "!online": {
+						let users = []
+						
+						findClient.users.forEach(e => {
+							users.push(`\`${e._id.slice(0, 6)}\` ${e.name}`)
+						})
+
+						message.channel.send(`Connected users: ${users.join(", ")}`)
+						break
+					}
+					default: {
+						findClient.sendMessage(`[discord.gg/DgAHFKBw44] ${message.author.username}#${message.author.discriminator}: ${message.content}`)
+						break
+					}
+					}
 				}
 			}	
 		})
