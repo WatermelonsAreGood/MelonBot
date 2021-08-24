@@ -1,4 +1,4 @@
-import { Client, Intents } from "discord.js"
+import { Client, Intents, Util } from "discord.js"
 
 import EventEmitter from "events"
 
@@ -61,9 +61,11 @@ export default class DiscordManager extends EventEmitter {
 					console.log("Couldn't send message for " + s.channel + " " + s.server.ws + ". Couldn't find channel.")
 					return
 				}
-
+				
 				try {
-					await findChannel.send(s.content.join("\n"), { split: true })
+					Util.splitMessage(s.content.join("\n")).forEach(async l => {
+						await findChannel.send(l)
+					})
 				} catch(error) {
 					console.log("Failed to send a message. This is nothing to worry about usually. " + error)
 				}
