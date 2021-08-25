@@ -33,7 +33,7 @@ export default class DiscordManager extends EventEmitter {
 							users.push(`\`${e._id.slice(0, 6)}\` ${e.name}`)
 						})
 
-						message.channel.send(`Connected users: ${users.join(", ")}`)
+						message.channel.send(`Connected users: ${users.join(", ").replace(/<@(.*?)>/gm, "")}`)
 						break
 					}
 					default: {
@@ -81,7 +81,7 @@ export default class DiscordManager extends EventEmitter {
 				
 				try {
 					Util.splitMessage(s.content.join("\n")).forEach(async l => {
-						await findChannel.send(l)
+						await findChannel.send(l.replace(/<@(.*?)>/gm, ""))
 					})
 				} catch(error) {
 					console.log("Failed to send a message. This is nothing to worry about usually. " + error)
