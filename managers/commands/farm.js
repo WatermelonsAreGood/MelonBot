@@ -18,14 +18,12 @@ export default class command {
 	async run(message) {
 		const me = await USERS.get(message.user._id)
 
-		const myself = this.client.users.get(message.user._id)
-
-		if(myself.isFarming) {
-			this.client.sendMessage("You've been farming since " + new Date(myself.isFarming).toLocaleTimeString())
+		if(me.isFarming) {
+			this.client.sendMessage("You've been farming since " + new Date(me.isFarming).toLocaleTimeString())
 			return
 		} else {
-			myself.isFarming = Date.now()
-			this.client.users.set(message.user._id, myself)
+			me.isFarming = Date.now()
+			await USERS.set(message.user._id, me)
 		}
 
 		this.client.sendMessage("Started farming!")
@@ -38,8 +36,7 @@ export default class command {
 		})
 
 		setTimeout(async () => {
-			if(this.client.users.has(message.user._id))
-				delete this.client.users.get(message.user._id).isFarming
+			delete me.isFarming
 
 			itemsToGive.forEach(item => {
 				const myItem = me.inventory.find(e => e.id == item.id)
