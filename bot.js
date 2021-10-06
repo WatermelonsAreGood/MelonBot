@@ -35,11 +35,7 @@ function startBot(server, channel) {
 	client.on("ready", () => {
 		client.setChannel(channel)
 		client.setUsername(config.username)
-		client.sendPacket("userset", {
-			set: {
-				color: "#ffa807"
-			}
-		})
+
 		
 		client.dvd.startLoop()
 
